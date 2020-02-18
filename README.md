@@ -1,0 +1,1 @@
+# Fake temperature data generator
