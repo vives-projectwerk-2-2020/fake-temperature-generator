@@ -6,7 +6,7 @@ port = "32772"
 def dopost(temp, now_epoch_s):
     url = "http://" + ip + ":"+ port +"/write?db=particulaInfluxDB&precision=s"
 
-    payload = 'sensors,sensor_id=sensor-test humidity=59,location="lab2.80",pm10=23,pm25=12,temperature={} {}'.format(temp, now_epoch_s)
+    payload = 'sensors,sensor_id=sensor-test humidity=59,pm10=23,pm25=12,temperature={} {}'.format(temp, now_epoch_s)
     headers= {}
 
     requests.request("POST", url, headers=headers, data = payload)
