@@ -1,18 +1,19 @@
 import time, requests, random, sched
 
-ip = "172.16.48.1"
+ip = "localhost"
+port = "32772"
 
 def dopost(temp, now_epoch_s):
-    url = "http://" + ip + ":8086/write?db=particulaInfluxDB&precision=s"
+    url = "http://" + ip + ":"+ port +"/write?db=particulaInfluxDB&precision=s"
 
-    payload = "sensors,sensor_id=sensor_02 temp={} {}".format(temp, now_epoch_s)
+    payload = 'sensors,sensor_id=sensor-test humidity=59,location="lab2.80",pm10=23,pm25=12,temperature={} {}'.format(temp, now_epoch_s)
     headers= {}
 
     requests.request("POST", url, headers=headers, data = payload)
     print("send temp: {}".format(temp))    
 
 def doget():
-    url = "http://" + ip + ":8086/query?db=particulaInfluxDB&q=select * from sensors"
+    url = "http://" + ip + ":"+ port +"/query?db=particulaInfluxDB&q=select * from sensors"
 
     payload = ""
     headers= {}
